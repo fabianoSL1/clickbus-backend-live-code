@@ -110,4 +110,14 @@ class PlaceServiceTest {
         assertEquals(place.getCreatedAt(), edited.getCreatedAt());
         assertNotNull(edited.getUpdatedAt());
     }
+
+    @Test
+    void whenFindAllOk() {
+        when(repository.findAll()).thenReturn(Collections.singletonList(place));
+
+        List<Place> actual = service.findAll();
+
+        assertEquals(1, actual.size());
+        verify(repository, atLeastOnce()).findAll();
+    }
 }
