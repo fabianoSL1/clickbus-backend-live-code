@@ -8,9 +8,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import org.apache.commons.lang3.NotImplementedException;
 
 @Service
 @AllArgsConstructor
@@ -35,6 +35,18 @@ public class PlaceService {
     }
 
     public Place alter(@NotNull Place place, @NotNull PlaceDTO placeDTO) {
-        return repository.updateById(place.getId(), placeDTO.buildPlace());
+        Place updatePlace = new Place(
+                place.getId(),
+                placeDTO.getName(),
+                placeDTO.getSlug(),
+                place.getCity(),
+                placeDTO.getState(),
+                place.getCreatedAt(),
+                LocalDateTime.now()
+        );
+
+        repository.save(updatePlace);
+
+        return updatePlace;
     }
 }
