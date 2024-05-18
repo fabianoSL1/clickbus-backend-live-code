@@ -19,22 +19,22 @@ public class PlaceService {
     private PlaceRepository repository;
 
     public List<Place> findAll() {
-        throw new NotImplementedException("Metodo nao implementado");
+        return repository.findAll();
     }
 
     public Optional<Place> findById(@NotNull Long id) {
-        throw new NotImplementedException("Metodo nao implementado");
+        return repository.findById(id);
     }
 
     public Place save(@NotNull Place place) {
-        throw new NotImplementedException("Metodo nao implementado");
+        return repository.save(place);
     }
 
     public List<Place> findByName(@NotNull String name) {
-        throw new NotImplementedException("Metodo nao implementado");
+        return repository.findByName(name);
     }
 
-    public Place alter(@NotNull Place place,@NotNull PlaceDTO placeDTO) {
-        throw new NotImplementedException("Metodo nao implementado");
+    public Place alter(@NotNull Place place, @NotNull PlaceDTO placeDTO) {
+        return repository.updateById(place.getId(), placeDTO.buildPlace());
     }
 }
